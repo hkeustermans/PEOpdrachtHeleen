@@ -174,10 +174,10 @@
                 <div class="alert alert-success" role="alert">
                     A simple success alert—check it out!
                 </div>
-                <div class="alert alert-primary" name="alertBlue" role="alert">
+                <div class="alert alert-primary" id="alertBlue" role="alert">
                     A simple primary alert—check it out!
                 </div>
-                <div class="alert alert-danger" name="alertRed" role="alert">
+                <div class="alert alert-danger" id="alertRed" role="alert">
                     A simple danger alert—check it out!
                 </div>
             </div>
@@ -241,7 +241,13 @@
             }
 
             //Controle betalingswijze
-            validatePayment(document.querySelector('input[name="radioBetaling"]:checked').value);
+            var radioKeuze = document.getElementsByName('radioBetaling');
+            for (var i = 0, length = radioKeuze.length; i < length; i++) {
+                if (radioKeuze[i].checked) {
+                    validatePayment(radioKeuze[i].value);
+                    break;
+                }
+            }
             //bron: https://stackoverflow.com/questions/9618504/how-to-get-the-selected-radio-button-s-value
 
 
@@ -254,7 +260,15 @@
             //controle postcode
             checkPC(txtPostcode);
 
-            document.getElementById("alertRed").innerHTML = alerts.toString;
+            //opmaak errors
+            var result = "";
+            for (var i = 0; i < alerts.length; i++) {
+                result += alerts[i] + ",";
+            }
+            console.log(alerts);
+            console.log(alerts.length);
+            document.getElementById("alertRed").innerHTML = result.split(',').join('<br>');
+            console.log(result);
 
         }
 
@@ -269,7 +283,7 @@
             if (post < 1000 && post > 9999) {
                 alerts.push("Postcode moet tussen 1000 en 9999 liggen.")
             }
-            checkEmptyField(document.getElementById("txtAchternaam").value, "Het veld achternaam is vereist.");
+            checkEmptyField(document.getElementById("txtPostcode").value, "Het veld postcode is vereist.");
         }
 
         //controle betaling
