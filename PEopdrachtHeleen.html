@@ -56,11 +56,11 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="voornaam">Voornaam</label>
-                        <input type="text" id="voornaam" class="form-control" placeholder="Uw voornaam"><br>
+                        <input type="text" id="txtvoornaam" class="form-control" placeholder="Uw voornaam"><br>
                     </div>
                     <div class="col-md-6">
                         <label for="achternaam">Achternaam</label>
-                        <input type="text" id="achternaam" class="form-control" placeholder="Uw achternaam"><br>
+                        <input type="text" id="txtachternaam" class="form-control" placeholder="Uw achternaam"><br>
                     </div>
                 </div>
                 <div class="row">
@@ -68,36 +68,36 @@
                         <label for="gebruikersnaam">Gebruikersnaam</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">@</span>
-                            <input type="text" class="form-control" placeholder="u911236" aria-label="Username" aria-describedby="basic-addon1"><br>
+                            <input type="text" name="txtGebruikersnaam" class="form-control" placeholder="u911236" aria-label="Username" aria-describedby="basic-addon1"><br>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <label for="emailadres">E-mailadres</label>
-                        <input type="email" id="emailadres" class="form-control" placeholder="mail@example.be"><br>
+                        <input type="email" name="txtEmail" id="emailadres" class="form-control" placeholder="mail@example.be"><br>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <label for="wachtwoord">Wachtwoord</label>
-                        <input type="text" id="wachtwoord" class="form-control">
+                        <input type="password" name="txtWachtwoord" id="wachtwoord" class="form-control">
 
                         <p style="color: grey;  font-size: 12px;">Je wachtwoord moet minstens 8 tekens lang zijn.</p>
                     </div>
                     <div class="col-md-6">
                         <label for="herhaalwachtwoord">Herhaal wachtwoord</label>
-                        <input type="text" id="herhaalwachtwoord" class="form-control">
+                        <input type="password" name="txtHerhaalWachtwoord" id="herhaalwachtwoord" class="form-control">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <label for="adres">Adres</label>
-                        <input type="text" id="adres" class="form-control" placeholder="Uw adres en huisnummer"> <br>
+                        <input type="text" name="txtadres" id="adres" class="form-control" placeholder="Uw adres en huisnummer"> <br>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
                         <label>Land</label>
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" name="frmLand" aria-label="Default select example">
                             <option selected>Kies een land</option>
                             <option value="België">België</option>
                             <option value="Frankrijk">Frankrijk</option>
@@ -106,7 +106,7 @@
                     </div>
                     <div class="col-md-5">
                         <label>Provincie</label>
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" name="frmProvincie" aria-label="Default select example">
                             <option selected>Kies een provincie</option>
                             <option value="België">België</option>
                             <option value="Frankrijk">Frankrijk</option>
@@ -117,7 +117,7 @@
                     </div>
                     <div class="col-md-3">
                         <label for="postcode">Postcode</label>
-                        <input type="text" id="postcode" class="form-control">
+                        <input type="text" name="txtPostcode" id="postcode" class="form-control">
                     </div>
                 </div> <br>
                 <div class="row">
@@ -125,11 +125,11 @@
                         <h4>Hou me op de hoogte</h4>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Inschrijven voor onze nieuwsbrief</label>
+                            <label class="form-check-label" name="chkInschrijven" for="exampleCheck1">Inschrijven voor onze nieuwsbrief</label>
 
                         </div>
                         <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <input type="checkbox" name="chkVoorwaarden" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Ik ga akkoord met de algemene voorwaarden.</label>
 
                         </div>
@@ -139,26 +139,26 @@
                     <div class="col-md-6">
                         <h4>Betaling</h4>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                            <label class="form-check-label" for="exampleRadios1">
+                            <input class="form-check-input" type="radio" name="rdBankingApp" id="exampleRadios1" value="option1" checked>
+                            <label class="form-check-label" for="BankingApp">
                               Banking app
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                            <label class="form-check-label" for="exampleRadios2">
+                            <input class="form-check-input" type="radio" name="rdOverschrijving" id="exampleRadios2" value="option2">
+                            <label class="form-check-label" for="Overschrijving">
                               Overschrijving
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                            <label class="form-check-label" for="exampleRadios2">
+                            <input class="form-check-input" type="radio" name="rdVisaCard" id="exampleRadios2" value="option2">
+                            <label class="form-check-label" for="VisaCard">
                               Visa card
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                            <label class="form-check-label" for="exampleRadios2">
+                            <input class="form-check-input" type="radio" name="rdPayPal" id="exampleRadios2" value="option2">
+                            <label class="form-check-label" for="PayPal">
                               PayPal
                             </label>
                         </div>
@@ -189,17 +189,56 @@
         //array voor alerts declareren en aanmaken
         var alerts = [];
 
-        //functie formulier valideren aanmaken test aanpassendddd
+        //functie formulier valideren aanmaken
         function validateForm() {
-            if (document.getElementById("voornaam") == "") {
-                alerts.push("Gelieve een voornaam in te geven.");
-            }
-            if (document.achternaam == "") {
+            //1. Lege velden
 
-            }
+
+            //voornaam
+            checkEmptyField(document.getElementById("voornaam"), "Het veld voornaam is vereist.")
+
+            //achternaam
+            checkEmptyField(document.getElementById("achternaam"), "Het veld achternaam is vereist.")
+
+            //gebruikersnaam
+            checkEmptyField(document.getElementById("gebruikersnaam"), "Het veld gebruikersnaam is vereist.")
+
+            //email adres
+            checkEmptyField(document.getElementById("emailadres"), "Het veld e-mailadres is vereist.")
+
+            //land
+
+            //wachtwoord
+            checkEmptyField(document.getElementById("wachtwoord"), "Het veld wachtwoord is vereist.")
+                //herhaal wachtwoord
+            checkEmptyField(document.getElementById("herhaalwachtwoord"), "Het veld Herhaal wachtwoord is vereist.")
+
+
+
+            //Provincie
+
+
+
+            // Controle emailadres
+
+            // Controle Wachtwoord
+
+            //Controle betalingswijze
+
+            //controle algemene voorwaarden
+
+            //
+
         }
 
         function checkEmptyField(veld, melding) {
+            if (veld == "") {
+                alerts.push(melding);
+            } else if (veld == "Kies een land") {
+                alerts.push(melding);
+            } else if (veld == "Kies een provincie") {
+
+            }
 
         }
     </script>
