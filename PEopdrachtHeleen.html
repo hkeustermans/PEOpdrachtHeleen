@@ -5,10 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <title>PE Opdracht: Niels Mangelschots</title>
+    <title>PE Opdracht: Heleen Keustermans</title>
 </head>
 
-<body>
+
+<body> 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Navbar</a>
@@ -179,26 +180,41 @@
             </div>
             <div class="col-md-4">
                 <div class="alert alert-success" id="alertGreen" role="alert">
-                    A simple success alert—check it out!
+                    <h4>Goed gedaan!</h4>
+                    <div class="row" id="alertGreenText">
+
+                    </div>
+                    
                 </div>
                 <div class="alert alert-primary" id="alertBlue" role="alert">
-                    A simple primary alert—check it out!
+                    <h4>Betalingswijze</h4>
+                    <div class="row" id="alertBlueText">
+
+                    </div>
                 </div>
                 <div class="alert alert-danger" id="alertRed" role="alert">
-                    A simple danger alert—check it out!
+                    <h4>Yikes, errors..</h4>
+                    <div class="row" id="alertRedText">
+
+                    </div>
                 </div>
             </div>
+            
         </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <script>
+        //on load: verberg alerts
+        window.onload=verbergAlerts(); //bron onload: https://stackoverflow.com/questions/17274601/javascript-onload-not-working
+
         //array voor alerts declareren en aanmaken
-        var alerts = [];
+        var alerts = []; //bereikbaar voor alle methodes in javascript
 
         //functie formulier valideren aanmaken
         function validateForm() {
-            //1. Lege velden
+            
+            //1. Lege velden + wachtwoord validatie
 
             //voornaam
             checkEmptyField(document.getElementById("txtvoornaam").value, "Het veld voornaam is vereist.");
@@ -216,7 +232,7 @@
             //wachtwoord
             checkEmptyField(document.getElementById("txtWachtwoord").value, "Het veld wachtwoord is vereist.");
 
-            // Controle Wachtwoord
+            // validatie wachtwoord
             ww = document.getElementById("txtWachtwoord").value;
             wwherh = document.getElementById("txtHerhaalWachtwoord").value;
 
@@ -225,11 +241,11 @@
 
                 } else {
 
-                    alerts.push("De wachtwoorden komen niet overeen.")
+                    alerts.push("De wachtwoorden komen niet overeen.");
 
                 }
             } else {
-                alerts.push("Het wachtwoord moet minstens 8 tekens hebben.")
+                alerts.push("Het wachtwoord moet minstens 8 tekens hebben.");
             }
 
             //herhaal wachtwoord
@@ -245,10 +261,13 @@
             checkEmptyField(document.getElementById("frmProvincie").value, "Het veld provincie is vereist.");
 
 
+            //2. Controles via functies
+
             // Controle e-mailadres
             if (!validateEmail(document.getElementById("txtEmail").value)) {
                 alerts.push("E-mailadres is niet correct.");
             }
+            
 
 
             //Controle betalingswijze
@@ -256,16 +275,16 @@
             for (var i = 0, length = radioKeuze.length; i < length; i++) {
                 if (radioKeuze[i].checked) {
                     validatePayment(radioKeuze[i].value);
-                    break;
+                    break; //bron: https://stackoverflow.com/questions/9618504/how-to-get-the-selected-radio-button-s-value
                 }
             }
-            //bron: https://stackoverflow.com/questions/9618504/how-to-get-the-selected-radio-button-s-value
+            
 
 
             //controle algemene voorwaarden
 
             if (!document.getElementById("chkVoorwaarden").checked) { //bron : https://stackoverflow.com/questions/9887360/how-can-i-check-if-a-checkbox-is-checked
-                alerts.push("Je moet de algemene voorwaarden accepteren.")
+                alerts.push("Je moet de algemene voorwaarden accepteren.");
             }
 
             //controle postcode
@@ -274,7 +293,9 @@
             //rode alertbox
             //testen of er wel errors zijn
             if (alerts.length == 0) { //bron: https://www.freecodecamp.org/news/check-if-javascript-array-is-empty-or-not-with-length/
-                document.getElementById('alertGreen').innerHTML = "Aww yeah, je werd geregistreerd."
+                document.getElementById('alertRed').innerHTML="";
+                document.getElementById('alertGreenText').innerHTML = "Aww yeah, je werd geregistreerd.";
+                document.getElementById('alertGreen').style.display='block';
             } else {
                 //opmaak errors
                 var result = "";
@@ -283,7 +304,9 @@
                 }
 
                 //alerts printen
-                document.getElementById("alertRed").innerHTML = result.split(',').join('<br>');
+
+                document.getElementById("alertRedText").innerHTML = result.split(',').join('<br>');
+                document.getElementById("alertRed").style.display='block'; //bron display div https://stackoverflow.com/questions/21070101/show-hide-div-using-javascript
                 alerts = [];
                 result = "";
 
@@ -296,18 +319,20 @@
 
         //controle postcode
         function checkPC(veld) {
-            //string naar int bron: https://www.w3schools.com/jsref/jsref_parseint.asp
-            //controle waarde van postcode
+             console.log(Number(veld));
             if (veld == "") {
                 checkEmptyField(document.getElementById("txtPostcode").value, "Het veld postcode is vereist.");
-            } else if (parseInt(veld) < 1000 && parseInt(veld) > 9999) {
-                alerts.push("Postcode moet tussen 1000 en 9999 liggen.")
+            } 
+
+            else if (Number(veld) < 1000 || Number(veld) > 9999 || isNaN(Number(veld)) ) { //bron Number: https://gomakethings.com/converting-strings-to-numbers-with-vanilla-javascript/
+                alerts.push("Postcode moet tussen 1000 en 9999 liggen."); //bron isNaN: https://www.w3schools.com/jsref/jsref_isnan_number.asp#:~:text=isNaN()%20method%20determines%20whether,Number.
             }
         }
 
         //controle betaling
         function validatePayment(veld) {
-            document.getElementById("alertBlue").innerHTML = `Je betalingswijze is ${veld}`
+            document.getElementById('alertBlue').style.display='block';
+            document.getElementById("alertBlueText").innerHTML = `Je betalingswijze is ${veld}`;
         }
         //controle lege velden: functie
         function checkEmptyField(veld, melding) {
@@ -322,27 +347,52 @@
         }
 
 
-        // 2. Controle emailadres
-        // gebruikersnaam van e-mailadres
-
-
-        //TO DO!
-
-
-        // controle domein van het e-mailadres
+        // Controle emailadres 
+        
         function validateEmail(email) {
-            //a. splitsen emailadres
+
+            // lokale variabelen
             var emailsplit = [];
-            emailsplit = email.split("@");
+            var naam ="";
+            var domein ="";
+            var status = false ; //status van geldigheid van emailadres
+
+
+            
+            //a. splitsen emailadres
+            if (email.includes("@")) { //controle of e-mailadres apenstaartje heeft
+            emailsplit = email.split("@"); //dan kan er gesplitst worden, anders wrong format
+            naam=emailsplit[0];
             domein = emailsplit[1];
-            //b. controle domeinnaam
-            if (domein == "") {
-                return false
-            } else {
-                var regex = /^[A-z]+([A-z])+\.*\-*$/
-                console.log(regex.test(domein));
-                return regex.test(domein);
+            
+
+            //b. controle naam voor het apenstaartje
+
+            if (naam.length==0 || domein.length==0){
+                status= false;
             }
+            else if (/\w+\-*\.*\w+/.test(naam)) {
+                status =  true;
+
+            }
+            else {
+                status =  false;
+            }
+            //c. controle domeinnaam
+            if (/[A-z]+\.*\-*[A-z]+\.*\-*[A-z]+/.test(domein)){
+                status = true;
+            }
+            }
+
+            return status;
+
+
+        }
+
+        function verbergAlerts() { //alle alerts verbergen
+            document.getElementById('alertRed').style.display='none';
+            document.getElementById('alertBlue').style.display='none';
+            document.getElementById('alertGreen').style.display='none';
 
         }
     </script>
